@@ -1,4 +1,4 @@
-#includ<stdio.h>
+#include<stdio.h>
 /*
  *Fouad EL AZBI
  *SE student
