@@ -21,13 +21,13 @@ int main(int argc, char *argv[])
 
 	nbrBytes = atoi(argv[1]);
 
-	if (nbrBytes <0)
+	if (nbrBytes < 0)
 	{
 	  	printf("Error\n");
 	  	exit(2);
 	}
 	
-	for(i=0; i < nbrBytes; i++)
+	for(i = 0; i < nbrBytes; i++)
 	{
 	  	printf("%02x", opcode[i] & 0xFF);
 	  	if (i != nbrBytes - 1)
