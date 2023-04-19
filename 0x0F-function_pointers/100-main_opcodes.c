@@ -10,30 +10,30 @@
 
 int main(int argc, char *argv[])
 {
-	char *opcode = (char *) main;
-	int i, nbrBytes;
+	char *opc = (char *) main;
+	int i, nbytes;
 
 	if (argc != 2)
 	{
-  		printf("Error\n");
-  		exit(1);
+		printf("Error\n");
+		exit(1);
 	}
 
-	nbrBytes = atoi(argv[1]);
+	nbytes = atoi(argv[1]);
 
-	if (nbrBytes < 0)
+	if (nbytes < 0)
 	{
-	  	printf("Error\n");
-	  	exit(2);
+		printf("Error\n");
+		exit(2);
 	}
-	
-	for(i = 0; i < nbrBytes; i++)
+
+	for (i = 0; i < nbytes; i++)
 	{
-	  	printf("%02x", opcode[i] & 0xFF);
-	  	if (i != nbrBytes - 1)
+		printf("%02x", opc[i] & 0xFF);
+		if (i != nbytes - 1)
 			printf(" ");
 	}
-	
+
 	printf("\n");
 	return (0);
 }
