@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * error_file - checks if file can be opened.
@@ -16,6 +15,7 @@ void error_file(int file_from, int file_to, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
+	
 	if (file_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
@@ -33,7 +33,7 @@ void error_file(int file_from, int file_to, char *argv[])
 int main(int argc, char *argv[])
 {
 	int file_from, file_to, err_close;
-	ssize_t nbrChar, wr;
+	ssize_t nchar, nwr;
 	char buff[1024];
 
 	if (argc != 3)
@@ -46,18 +46,23 @@ int main(int argc, char *argv[])
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 	error_file(file_from, file_to, argv);
 
-	nbrChar = 1024;
-	while (nbrChar == 1024)
+	nchar = 1024;
+	
+	while (nchar == 1024)
 	{
-		nbrChar = read(file_from, buff, 1024);
-		if (nbrChar == -1)
+		nchar = read(file_from, buff, 1024);
+		
+		if (nchar == -1)
 			error_file(-1, 0, argv);
-		wr = write(file_to, buff, nbrChar);
-		if (wr == -1)
+		
+		nwr = write(file_to, buff, nchar);
+		
+		if (nwr == -1)
 			error_file(0, -1, argv);
 	}
 
 	err_close = close(file_from);
+	
 	if (err_close == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file_from);
@@ -65,11 +70,12 @@ int main(int argc, char *argv[])
 	}
 
 	err_close = close(file_to);
+	
 	if (err_close == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file_from);
 		exit(100);
 	}
-
+	
 	return (0);
 }
