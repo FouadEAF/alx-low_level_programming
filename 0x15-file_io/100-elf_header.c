@@ -1,23 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "main.h"
 #include <elf.h>
 
 /**
- * print_addr - prints address
+ * print_addr - print address.
  * @ptr: magic.
  * Return: no return.
  */
+
 void print_addr(char *ptr)
 {
 	int i;
 	int begin;
 	char sys;
 
-	printf("=> Entry point address:               0x");
+	printf("  Entry point address: 0x");
 
 	sys = ptr[4] + '0';
 	if (sys == '1')
@@ -52,10 +48,11 @@ void print_addr(char *ptr)
 }
 
 /**
- * print_type - prints type
+ * print_type - print type.
  * @ptr: magic.
  * Return: no return.
  */
+
 void print_type(char *ptr)
 {
 	char type = ptr[16];
@@ -65,7 +62,7 @@ void print_type(char *ptr)
 	else
 		type = ptr[17];
 
-	printf("=> Type:                              ");
+	printf("  Type:                              ");
 	if (type == 0)
 		printf("NONE (No file type)\n");
 	else if (type == 1)
@@ -81,7 +78,7 @@ void print_type(char *ptr)
 }
 
 /**
- * print_osabi - prints osabi
+ * print_osabi - print osabi.
  * @ptr: magic.
  * Return: no return.
  */
@@ -89,7 +86,7 @@ void print_osabi(char *ptr)
 {
 	char osabi = ptr[7];
 
-	printf("=> OS/ABI:                            ");
+	printf("  OS/ABI:                            ");
 	if (osabi == 0)
 		printf("UNIX - System V\n");
 	else if (osabi == 2)
@@ -99,20 +96,21 @@ void print_osabi(char *ptr)
 	else
 		printf("<unknown: %x>\n", osabi);
 
-	printf("=> ABI Version:                       %d\n", ptr[8]);
+	printf("  ABI Version:                       %d\n", ptr[8]);
 }
 
 
 /**
- * print_version - prints version
+ * print_version - print version.
  * @ptr: magic.
  * Return: no return.
  */
+
 void print_version(char *ptr)
 {
 	int version = ptr[6];
 
-	printf("=> Version:                           %d", version);
+	printf("  Version:                           %d", version);
 
 	if (version == EV_CURRENT)
 		printf(" (current)");
@@ -128,23 +126,25 @@ void print_data(char *ptr)
 {
 	char data = ptr[5];
 
-	printf("=> Data:                              2's complement");
+	printf("  Data:						2's complement");
 	if (data == 1)
 		printf(", little endian\n");
 
 	if (data == 2)
 		printf(", big endian\n");
 }
+
 /**
- * print_magic - prints magic info.
+ * print_magic - print magic info.
  * @ptr: magic.
  * Return: no return.
  */
+
 void print_magic(char *ptr)
 {
 	int bytes;
 
-	printf("=> Magic:  ");
+	printf("  Magic:  ");
 
 	for (bytes = 0; bytes < 16; bytes++)
 		printf(" %02x", ptr[bytes]);
@@ -158,6 +158,7 @@ void print_magic(char *ptr)
  * @ptr: magic.
  * Return: no return.
  */
+
 void check_sys(char *ptr)
 {
 	char sys = ptr[4] + '0';
@@ -169,10 +170,10 @@ void check_sys(char *ptr)
 	print_magic(ptr);
 
 	if (sys == '1')
-		printf("=> Class:                             ELF32\n");
+		printf("  Class:                             ELF32\n");
 
 	if (sys == '2')
-		printf("=> Class:                             ELF64\n");
+		printf("  Class:                             ELF64\n");
 
 	print_data(ptr);
 	print_version(ptr);
@@ -186,6 +187,7 @@ void check_sys(char *ptr)
  * @ptr: magic.
  * Return: 1 if it is an elf file. 0 if not.
  */
+
 int check_elf(char *ptr)
 {
 	int addr = (int)ptr[0];
@@ -200,11 +202,12 @@ int check_elf(char *ptr)
 }
 
 /**
- * main - check the code for Holberton School students.
+ * main - check the code for SE ALX program.
  * @argc: number of arguments.
  * @argv: arguments vector.
  * Return: Always 0.
  */
+
 int main(int argc, char *argv[])
 {
 	int fd, ret_read;
