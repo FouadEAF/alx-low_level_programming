@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -8,7 +7,7 @@
 #include <elf.h>
 
 /**
- * print_addr - prints address.
+ * print_addr - prints address
  * @ptr: magic.
  * Return: no return.
  */
@@ -53,7 +52,7 @@ void print_addr(char *ptr)
 }
 
 /**
- * print_type - prints type.
+ * print_type - prints type
  * @ptr: magic.
  * Return: no return.
  */
@@ -82,7 +81,7 @@ void print_type(char *ptr)
 }
 
 /**
- * print_osabi - prints osabi.
+ * print_osabi - prints osabi
  * @ptr: magic.
  * Return: no return.
  */
@@ -104,7 +103,7 @@ void print_osabi(char *ptr)
 }
 
 /**
- * print_version - prints version.
+ * print_version - prints version
  * @ptr: magic.
  * Return: no return.
  */
@@ -119,9 +118,8 @@ void print_version(char *ptr)
 
 	printf("\n");
 }
-
 /**
- * print_data - prints data.
+ * print_data - prints data
  * @ptr: magic.
  * Return: no return.
  */
@@ -136,7 +134,6 @@ void print_data(char *ptr)
 	if (data == 2)
 		printf(", big endian\n");
 }
-
 /**
  * print_magic - prints magic info.
  * @ptr: magic.
