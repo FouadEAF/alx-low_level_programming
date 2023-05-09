@@ -1,19 +1,23 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <elf.h>
 
 /**
- * print_addr - print address.
+ * print_addr - prints address
  * @ptr: magic.
  * Return: no return.
  */
-
 void print_addr(char *ptr)
 {
 	int i;
 	int begin;
 	char sys;
 
-	printf("=> Entry point address: 0x");
+	printf("=> Entry point address:               0x");
 
 	sys = ptr[4] + '0';
 	if (sys == '1')
@@ -48,11 +52,10 @@ void print_addr(char *ptr)
 }
 
 /**
- * print_type - print type.
+ * print_type - prints type
  * @ptr: magic.
  * Return: no return.
  */
-
 void print_type(char *ptr)
 {
 	char type = ptr[16];
@@ -78,11 +81,10 @@ void print_type(char *ptr)
 }
 
 /**
- * print_osabi - print osabi.
+ * print_osabi - prints osabi
  * @ptr: magic.
  * Return: no return.
  */
-
 void print_osabi(char *ptr)
 {
 	char osabi = ptr[7];
@@ -102,11 +104,10 @@ void print_osabi(char *ptr)
 
 
 /**
- * print_version - print version.
+ * print_version - prints version
  * @ptr: magic.
  * Return: no return.
  */
-
 void print_version(char *ptr)
 {
 	int version = ptr[6];
@@ -119,29 +120,26 @@ void print_version(char *ptr)
 	printf("\n");
 }
 /**
- * print_data - print data.
+ * print_data - prints data
  * @ptr: magic.
  * Return: no return.
  */
-
 void print_data(char *ptr)
 {
 	char data = ptr[5];
 
-	printf("=> Data:						2's complement");
+	printf("=> Data:                              2's complement");
 	if (data == 1)
 		printf(", little endian\n");
 
 	if (data == 2)
 		printf(", big endian\n");
 }
-
 /**
- * print_magic - print magic info.
+ * print_magic - prints magic info.
  * @ptr: magic.
  * Return: no return.
  */
-
 void print_magic(char *ptr)
 {
 	int bytes;
@@ -160,7 +158,6 @@ void print_magic(char *ptr)
  * @ptr: magic.
  * Return: no return.
  */
-
 void check_sys(char *ptr)
 {
 	char sys = ptr[4] + '0';
@@ -189,7 +186,6 @@ void check_sys(char *ptr)
  * @ptr: magic.
  * Return: 1 if it is an elf file. 0 if not.
  */
-
 int check_elf(char *ptr)
 {
 	int addr = (int)ptr[0];
@@ -204,12 +200,11 @@ int check_elf(char *ptr)
 }
 
 /**
- * main - check the code for SE ALX program.
+ * main - check the code for Holberton School students.
  * @argc: number of arguments.
  * @argv: arguments vector.
  * Return: Always 0.
  */
-
 int main(int argc, char *argv[])
 {
 	int fd, ret_read;
