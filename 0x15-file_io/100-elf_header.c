@@ -1,13 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "main.h"
 #include <elf.h>
 
 /**
- * print_addr - prints address
+ * print_addr - prints address.
  * @ptr: magic.
  * Return: no return.
  */
@@ -52,7 +47,7 @@ void print_addr(char *ptr)
 }
 
 /**
- * print_type - prints type
+ * print_type - prints type.
  * @ptr: magic.
  * Return: no return.
  */
@@ -81,7 +76,7 @@ void print_type(char *ptr)
 }
 
 /**
- * print_osabi - prints osabi
+ * print_osabi - prints osabi.
  * @ptr: magic.
  * Return: no return.
  */
@@ -102,9 +97,8 @@ void print_osabi(char *ptr)
 	printf("  ABI Version:                       %d\n", ptr[8]);
 }
 
-
 /**
- * print_version - prints version
+ * print_version - prints version.
  * @ptr: magic.
  * Return: no return.
  */
@@ -119,8 +113,9 @@ void print_version(char *ptr)
 
 	printf("\n");
 }
+
 /**
- * print_data - prints data
+ * print_data - prints data.
  * @ptr: magic.
  * Return: no return.
  */
@@ -135,6 +130,7 @@ void print_data(char *ptr)
 	if (data == 2)
 		printf(", big endian\n");
 }
+
 /**
  * print_magic - prints magic info.
  * @ptr: magic.
@@ -150,7 +146,6 @@ void print_magic(char *ptr)
 		printf(" %02x", ptr[bytes]);
 
 	printf("\n");
-
 }
 
 /**
@@ -241,6 +236,5 @@ int main(int argc, char *argv[])
 
 	check_sys(ptr);
 	close(fd);
-
 	return (0);
 }
