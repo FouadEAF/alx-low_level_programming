@@ -46,16 +46,16 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	check_elf(header->e_Id);
+	check_elf(header);
 	printf("ELF Header:\n");
-	print_magic(header->e_Id);
-	print_class(header->e_Id);
-	print_data(header->e_Id);
-	print_version(header->e_Id);
-	print_osabi(header->e_Id);
-	print_abi(header->e_Id);
-	print_type(header->e_type, header->e_Id);
-	print_entry(header->e_entry, header->e_Id);
+	print_magic(header);
+	print_class(header);
+	print_data(header);
+	print_version(header);
+	print_osabi(header);
+	print_abi(header);
+	print_type(header->e_type, header);
+	print_entry(header->e_entry, header);
 
 	free(header);
 	close_elf(o);
