@@ -13,13 +13,13 @@ void print_entry(unsigned long int e_entry, unsigned char *e_Id);
 void close_elf(int elf);
 
 /**
- * main - Display the information contained in the
+ *  main - Display the information contained in the
  *        ELF header at the start of an ELF file.
  * @argc: The number of arguments supplied to the program.
  * @argv: An array of pointer to the argument.
  * Return: 0 on success.
  */
-int main(int argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
 	int o, r;
